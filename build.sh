@@ -32,7 +32,7 @@ services:
    POSTGRES_PASSWORD: pr019fH31p!
    POSTGRES_DB: profcom
   volumes:
-   - ./base:/docker-entrypoint-initdb.d
+   - pgdata:/var/lib/postgresql/data
   ports:
    - 5432:5432
 
@@ -53,5 +53,5 @@ services:
    SECRET_KEY: profcom246123
 
 volumes:
- base:
+ pgdata:
 EOF
