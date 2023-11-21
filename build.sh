@@ -54,6 +54,14 @@ services:
    DB_HOST: postgres
    DB_PORT: 5432
    SECRET_KEY: profcom246123
+  deploy:
+   resources:
+    limits:
+     cpus: '0.001'
+     memory: 50M
+    reservations:
+     cpus: '0.0001'
+     memory: 20M
 
 volumes:
  pgdata:
