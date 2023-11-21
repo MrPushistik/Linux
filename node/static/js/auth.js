@@ -1,3 +1,4 @@
+const serverURL = '/api';
 const form = document.querySelector(".auth");
 
 form.onsubmit = (e) => {
@@ -10,8 +11,16 @@ form.onsubmit = (e) => {
     axios.post(serverURL + command, {login: login, password: password})
     .then(res=>{
         e.target.reset();
-        createAlert("Вход выполнен успешно");
-        switch((JSON.parse(localStorage.getItem("user"))).role){
+
+        let cookies = {};
+        const cookiesArray = document.cookie.split(';');
+
+        cookiesArray.forEach((cookie) => {
+            const [key, value] = cookie.trim().split('=');
+            cookies[key] = value;
+        });
+
+        switch(cookies["role"]){
             case "ADMIN": window.location.href="/admin.html"; break;
             case "VOLUNTEER": window.location.href="/volunteer.html"; break;
         }
