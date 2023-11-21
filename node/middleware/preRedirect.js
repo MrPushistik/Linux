@@ -18,7 +18,7 @@ module.exports = function (role) {
 
             const token = cookies["token"];
             if (!token){
-                return res.status(401).json({message:"Не авторизован"})
+                return res.redirect("/auth.html");
             }
             const decoded = jwt.verify(token, process.env.SECRET_KEY)
             if (decoded.role !== role){
