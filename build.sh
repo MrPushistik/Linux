@@ -3,7 +3,7 @@
 #создаем Docker-file для серверa
 
 cat > Dockerfile << EOF
-FROM node:12.18.1
+FROM node:lastest
 COPY /node .
 RUN npm install
 CMD ["npm","run","dev"]
