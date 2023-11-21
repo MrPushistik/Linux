@@ -66,7 +66,9 @@ class UserController{
             //res.cookie(`token`,`${token}`);
             res.cookie(`userId`,`${user.id}`);
 
-            //return res.json({token})
+            return res.json(
+                //{token}
+                )
         }
         catch(e){
             next(ApiError.badRequest(e.message))
