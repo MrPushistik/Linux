@@ -6,7 +6,7 @@ sudo systemctl start docker
 #создаем Docker-file для серверa
 
 cat > Dockerfile << EOF
-FROM node:8
+FROM node:latest
 COPY /node .
 RUN npm install
 CMD ["npm","run","dev"]

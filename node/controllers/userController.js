@@ -60,15 +60,13 @@ class UserController{
 
             const user = await User.findOne({where: {credentialId: credential.id}});
 
-            //const token = generateJwt(user.id,credential.role);
+            const token = generateJwt(user.id,credential.role);
 
             res.cookie(`role`,`${credential.role}`);
-            //res.cookie(`token`,`${token}`);
+            res.cookie(`token`,`${token}`);
             res.cookie(`userId`,`${user.id}`);
 
-            return res.json(
-                //{token}
-                )
+            return res.json({token})
         }
         catch(e){
             next(ApiError.badRequest(e.message))
