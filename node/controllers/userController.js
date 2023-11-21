@@ -69,7 +69,7 @@ class UserController{
             return res.json({token})
         }
         catch(e){
-            next(ApiError.badRequest(e.message+a))
+            next(ApiError.badRequest(e.message))
         }
     }
 
