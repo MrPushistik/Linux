@@ -1,6 +1,16 @@
 const serverURL = '/api';
-let role = JSON.parse(localStorage.getItem("user")).role;
-let tokenStr = localStorage.getItem("token");
+
+let cookies = {};
+
+const cookiesArray = document.cookie.split(';');
+
+cookiesArray.forEach((cookie) => {
+    const [key, value] = cookie.trim().split('=');
+    cookies[key] = value;
+});
+
+let role = cookies["role"];
+let tokenStr = cookies["token"];
 let H = { headers: {"Authorization" : `Bearer ${tokenStr}`} }
 
 const matches = {
