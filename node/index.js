@@ -10,7 +10,7 @@ const path = require("path");
 const bcrypt = require('bcrypt');
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 const app = express();
 app.use(cors());
@@ -18,6 +18,7 @@ app.use(express.json());
 
 app.use("/admin.html", preRedirect("ADMIN"));
 app.use("/volunteer.html", preRedirect("VOLUNTEER"));
+app.use("/auth.html", preRedirect());
 
 app.use(express.static(path.resolve(__dirname, "static")));
 app.use('/api',router);

@@ -1,7 +1,7 @@
 const formGuestRequest = document.querySelector(".guest_request_form");
 const formFeedback = document.querySelector(".feedback_form");
 const feedbackComment = document.querySelector("#feedback-comments");
-const serverURL = 'http://localhost:3001/api';
+const serverURL = '/api';
 const month = ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"]
 
 const feedbacks = axios.get(serverURL + "/feedback/")
