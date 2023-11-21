@@ -1,9 +1,12 @@
 #!/bin/bash
 
+sudo systemctl enable docker
+sudo systemctl start docker
+
 #создаем Docker-file для серверa
 
 cat > Dockerfile << EOF
-FROM node:lastest
+FROM node:latest
 COPY /node .
 RUN npm install
 CMD ["npm","run","dev"]
