@@ -66,7 +66,7 @@ class UserController{
             return res.json({token})
         }
         catch(e){
-            next(ApiError.badRequest(e.message))
+            next(ApiError.badRequest(e.message+"4"))
         }
     }
 
