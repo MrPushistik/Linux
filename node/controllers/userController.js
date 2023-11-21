@@ -5,17 +5,11 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
 const generateJwt = (userId, role) => {
-    try{
-        return jwt.sign(
-            {userId,role},
-            process.env.SECRET_KEY,
-            {expiresIn:'24h'}
-        )
-    }
-    catch(e){
-        return e;
-    }
-    
+    return jwt.sign(
+        {userId,role},
+        process.env.SECRET_KEY,
+        {expiresIn:'24h'}
+    )
 }
 
 class UserController{
@@ -52,37 +46,27 @@ class UserController{
     }
 
     async login(req,res,next){
-        let a = 0;
         try{
             const {login,password} = req.body;
-            a++;
             const credential = await Credential.findOne({where: {login}});
-            a++;
             if (!credential){
                 return next(ApiError.badRequest("Пользователь не найден"));
             }
-            a++;
+
             let comparePassword = bcrypt.compareSync(password,credential.password)
-            a++;
             if (!comparePassword){
                 return next(ApiError.badRequest("Неверный пароль"));
             }
-            a++;
 
             const user = await User.findOne({where: {credentialId: credential.id}});
-            a++;
-            a=credential.role
+
             const token = generateJwt(user.id,credential.role);
-            a= 99;
 
             res.cookie(`role`,`${credential.role}`);
-            a++;
             res.cookie(`token`,`${token}`);
-            a++;
             res.cookie(`userId`,`${user.id}`);
-            a++;
+
             return res.json({token})
-            a++;
         }
         catch(e){
             next(ApiError.badRequest(e.message+a))
