@@ -46,27 +46,39 @@ class UserController{
     }
 
     async login(req,res,next){
+        let a = 0;
         try{
             const {login,password} = req.body;
+            a++;
             const credential = await Credential.findOne({where: {login}});
+            a++;
             if (!credential){
                 return next(ApiError.badRequest("Пользователь не найден"));
             }
+            a++;
             let comparePassword = bcrypt.compareSync(password,credential.password)
+            a++;
             if (!comparePassword){
                 return next(ApiError.badRequest("Неверный пароль"));
             }
+            a++;
 
             const user = await User.findOne({where: {credentialId: credential.id}});
+            a++;
             const token = generateJwt(user.id,credential.role);
+            a++;
 
             res.cookie(`role`,`${credential.role}`);
+            a++;
             res.cookie(`token`,`${token}`);
+            a++;
             res.cookie(`userId`,`${user.id}`);
+            a++;
             return res.json({token})
+            a++;
         }
         catch(e){
-            next(ApiError.badRequest(e.message+"4"))
+            next(ApiError.badRequest(e.message+a))
         }
     }
 
