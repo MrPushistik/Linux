@@ -6,7 +6,7 @@ sudo systemctl start docker
 #создаем Docker-file для серверa
 
 cat > Dockerfile << EOF
-FROM node:latest
+FROM node:8
 COPY /node .
 RUN npm install
 CMD ["npm","run","dev"]
@@ -54,10 +54,6 @@ services:
    DB_HOST: postgres
    DB_PORT: 5432
    SECRET_KEY: profcom246123
-  deploy:
-   resources:
-    limits:
-     memory: 50M
 
 volumes:
  pgdata:
