@@ -60,7 +60,8 @@ class UserController{
             const user = await User.findOne({where: {credentialId: credential.id}});
             const token = generateJwt(user.id,credential.role);
 
-            res.setHeader('Set-Cookie', `token=${token};role=${credential.role}`);
+            res.cookie(`role`,`${credential.role}`);
+            res.cookie(`token`,`${token}`);
             return res.json({token})
         }
         catch(e){

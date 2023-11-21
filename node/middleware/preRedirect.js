@@ -8,8 +8,11 @@ module.exports = function (role) {
         try {
             //const token = req.headers.authorization.split(' ')[1]//Bearer токен
             let cookies = {};
+            let cookiesArray = [];
 
-            const cookiesArray = req.headers.cookie.split(';');
+            if (req.headers.cookie){
+                cookiesArray = req.headers.cookie.split(';');
+            }
 
             cookiesArray.forEach((cookie) => {
                 const [key, value] = cookie.trim().split('=');
@@ -20,14 +23,15 @@ module.exports = function (role) {
             if (!token){
                 return res.redirect("/auth.html");
             }
+
             const decoded = jwt.verify(token, process.env.SECRET_KEY)
-            if (decoded.role !== role){
+            if (decoded && decoded.role !== role){
                 return res.status(403).json({message:"Нет доступа"})
             }
-            
+
             next()
         } catch(e){
-            return res.status(401).json({message:"Не авторизован"})
+            return res.status(401).json({message:`Не авторизован${a}`})
         }
     }
 }
