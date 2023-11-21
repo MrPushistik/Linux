@@ -11,6 +11,7 @@ cookiesArray.forEach((cookie) => {
 
 let role = cookies["role"];
 let tokenStr = cookies["token"];
+let userId = cookies["userId"];
 let H = { headers: {"Authorization" : `Bearer ${tokenStr}`} }
 
 const matches = {

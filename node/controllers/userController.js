@@ -62,6 +62,7 @@ class UserController{
 
             res.cookie(`role`,`${credential.role}`);
             res.cookie(`token`,`${token}`);
+            res.cookie(`userId`,`${user.id}`);
             return res.json({token})
         }
         catch(e){

@@ -72,7 +72,7 @@ const createTableRowUser = (elem) => {
     <p class="table-cell user-cell">${elem.email}</p>
     <p class="table-cell user-cell">
         <button type="button" class="pg-reduct read-button td-button">Посмотреть</button>
-        ${elem.id != JSON.parse(localStorage.getItem("user")).userId ? `<button type="button" class="pg-delete delete-button td-button">Удалить</button>` : ""}
+        ${elem.id != userId ? `<button type="button" class="pg-delete delete-button td-button">Удалить</button>` : ""}
     </p>
     `
 
