@@ -57,11 +57,7 @@ services:
   deploy:
    resources:
     limits:
-     cpus: '0.001'
      memory: 50M
-    reservations:
-     cpus: '0.0001'
-     memory: 20M
 
 volumes:
  pgdata:
