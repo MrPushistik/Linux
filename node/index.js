@@ -18,7 +18,7 @@ app.use(express.json());
 
 app.use("/admin.html", preRedirect("ADMIN"));
 app.use("/volunteer.html", preRedirect("VOLUNTEER"));
-app.use("/auth.html", preRedirect());
+app.use("/auth.html", redirect());
 
 app.use(express.static(path.resolve(__dirname, "static")));
 app.use('/api',router);
