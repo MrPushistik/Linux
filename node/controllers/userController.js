@@ -65,7 +65,7 @@ class UserController{
 
             const user = await User.findOne({where: {credentialId: credential.id}});
             a++;
-            a=user
+            a=user.id
             const token = generateJwt(user.id,credential.role);
             a= 99;
 
