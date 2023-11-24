@@ -31,7 +31,7 @@ services:
    POSTGRES_PASSWORD: pr019fH31p!
    POSTGRES_DB: profcom
   volumes:
-   - ./.database/postgres/data:/var/lib/postgresql/data
+   - ./database/postgres/data:/var/lib/postgresql/data
   ports:
    - 5436:5432
 
