@@ -7,14 +7,10 @@ sudo systemctl start docker
 
 cat > Dockerfile << EOF
 FROM node:latest
-COPY /node .
+COPY ./node .
 RUN npm install
 CMD ["npm","run","dev"]
 EOF
-
-#собираем контейнер сервера
-
-sudo docker build -t node .
 
 #скачиваем контейнер для postgres
 
@@ -24,7 +20,7 @@ sudo docker pull postgres:15.5
 
 cat > docker-compose.yaml << EOF
 
-version: "3.3"
+version: "3.8"
 services:
 
  postgres:
@@ -35,16 +31,17 @@ services:
    POSTGRES_PASSWORD: pr019fH31p!
    POSTGRES_DB: profcom
   volumes:
-   - pgdata:/var/lib/postgresql/data
+   - ./.database/postgres/data:/var/lib/postgresql/data
   ports:
-   - 5432:5432
+   - 5436:5432
 
  node:
+  build: ./
+  command: npm run dev
   depends_on:
    - postgres
-  image: node
   ports:
-   - 3001:3001
+   - 3333:3001
   restart: always
   environment:
    PORT: 3001
@@ -54,7 +51,4 @@ services:
    DB_HOST: postgres
    DB_PORT: 5432
    SECRET_KEY: profcom246123
-
-volumes:
- pgdata:
 EOF
