@@ -52,3 +52,9 @@ services:
    DB_PORT: 5432
    SECRET_KEY: profcom246123
 EOF
+
+
+sudo firewall-cmd --permanent --add-port=3333/tcp
+sudo firewall-cmd --reload
+
+
